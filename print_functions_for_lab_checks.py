@@ -70,7 +70,7 @@ def check_creating_pet_image_labels(results_dic):
             if n < stop_point:
                 # Nalini 7/30/2019 changed statement to add 'value' since earlier statement was getting only the first letter of the key
                 print("{:2d} key: {:>30}  label: {:>26}".format(n+1, key,
-                      value) )
+                      value[0]) )
 
                 # Increments counter
                 n += 1

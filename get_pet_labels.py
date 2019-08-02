@@ -47,10 +47,10 @@ def get_pet_labels(image_dir):
     results_dic = dict()
     
     # loop through files list
-    for id in range(0, len(files_list), 1):
+    # for id in range(0, len(files_list), 1):
     
     # testing only
-    # for id in range(0,8,1):
+    for id in range(0,3,1):
         
         # skip file if it starts with "."
         if files_list[id][0] != ".":
@@ -69,7 +69,7 @@ def get_pet_labels(image_dir):
             
             # add key (filename) and value ( the space separated name) in a dictionary
             if files_list[id] not in results_dic:
-                results_dic[files_list[id]] = pet_label
+                results_dic[files_list[id]] = [pet_label]
             else:
                 print('**Warning - Duplicate files exist in directory:', files_list[id])
     

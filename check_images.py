@@ -5,7 +5,7 @@
 # TODO 0: Add your information below for Programmer & Date Created.                                                                             
 # PROGRAMMER: Nalini Sharma
 # DATE CREATED: 7/29/2019                                 
-# REVISED DATE: 7/30/2019 added item
+# REVISED DATE: 7/30/2019
 # PURPOSE: Classifies pet images using a pretrained CNN model, compares these
 #          classifications to the true identity of the pets in the images, and
 #          summarizes how well the CNN performed on the image classification task. 
@@ -64,7 +64,7 @@ def main():
     # This function creates the results dictionary that contains the results, 
     # this dictionary is returned from the function call as the variable results
     results = get_pet_labels(in_arg.dir)
-    
+    print('Results in main:', results)
     # testing only
     # print('1 Dictionary of images and labels:', results)
     # Function that checks Pet Images in the results Dictionary using results    
@@ -79,7 +79,7 @@ def main():
     #             classify_images(in_arg.dir, results, in_arg.arch)
     # Creates Classifier Labels with classifier function, Compares Labels, 
     # and adds these results to the results dictionary - results
-    classify_images(None, results, None)
+    classify_images(in_arg.dir, results, in_arg.arch)
 
     # Function that checks Results Dictionary using results    
     check_classifying_images(results)    
