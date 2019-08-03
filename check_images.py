@@ -5,7 +5,7 @@
 # TODO 0: Add your information below for Programmer & Date Created.                                                                             
 # PROGRAMMER: Nalini Sharma
 # DATE CREATED: 7/29/2019                                 
-# REVISED DATE: 7/30/2019
+# REVISED DATE: 8/1/2019
 # PURPOSE: Classifies pet images using a pretrained CNN model, compares these
 #          classifications to the true identity of the pets in the images, and
 #          summarizes how well the CNN performed on the image classification task. 
@@ -80,9 +80,9 @@ def main():
     # Creates Classifier Labels with classifier function, Compares Labels, 
     # and adds these results to the results dictionary - results
     classify_images(in_arg.dir, results, in_arg.arch)
-
+    # print('Results dic after classifier: ', results)
     # Function that checks Results Dictionary using results    
-    check_classifying_images(results)    
+    check_classifying_images(results)
 
     
     # TODO 4: Define adjust_results4_isadog function within the file adjust_results4_isadog.py
@@ -93,7 +93,7 @@ def main():
     # Adjusts the results dictionary to determine if classifier correctly 
     # classified images as 'a dog' or 'not a dog'. This demonstrates if 
     # model can correctly classify dog images as dogs (regardless of breed)
-    adjust_results4_isadog(results, None)
+    adjust_results4_isadog(results, in_arg.dogfile)
 
     # Function that checks Results Dictionary for is-a-dog adjustment using results
     check_classifying_labels_as_dogs(results)

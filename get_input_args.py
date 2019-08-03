@@ -4,7 +4,7 @@
 #                                                                             
 # PROGRAMMER: Nalini Sharma
 # DATE CREATED:   7/29/2019                                
-# REVISED DATE: 7/29/2019
+# REVISED DATE: 7/30/2019
 # PURPOSE: Create a function that retrieves the following 3 command line inputs 
 #          from the user using the Argparse Python module. If the user fails to 
 #          provide some or all of the 3 inputs, then the default values are
@@ -42,13 +42,17 @@ def get_input_args():
     parser = argparse.ArgumentParser()
     # Create 3 command line arguments as mentioned above using add_argument() from ArguementParser method
     parser.add_argument('--dir', type = str, default = 'pet_images/', help = 'path to the pet images folder')
+    parser.add_argument('--arch', type = str, default = 'vgg', help  = 'Model Architecture')
+    parser.add_argument('--dogfile', type = str, default = 'dognames.txt', help = 'Test file with dog names' )
     
     in_args = parser.parse_args()
     
     return_args = in_args.dir
     
     print('Argument 1:',  in_args.dir)
+    # print('Argument 2:',  in_args.arch)
+    # print('Argument 3:',  in_args.dogfile)
     # Replace None with parser.parse_args() parsed argument collection that 
     # you created with this function 
     
-    return return_args
+    return in_args

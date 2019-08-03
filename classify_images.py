@@ -74,7 +74,9 @@ def classify_images(images_dir, results_dic, model):
         # inputs: path + filename  and  model, returns model_label 
         # as classifier label
         image_path = images_dir + key
+        model_label_list = []
         model_label = classifier(image_path, model)
+       
         # TODO: 3b. BELOW REPLACE pass with CODE to process the model_label to 
         #           convert all characters within model_label to lowercase 
         #           letters and then remove whitespace characters from the ends
@@ -84,10 +86,11 @@ def classify_images(images_dir, results_dic, model):
         # Processes the results so they can be compared with pet image labels
         # set labels to lowercase (lower) and stripping off whitespace(strip)
         model_label = model_label.lower().strip()
+        model_label_list.append(model_label)
         # defines truth as pet image label, this is the correct answer
         truth = results_dic[key]
         
-        print('   In Classify Images Model Label: {} and Truth: {}'.format(model_label, truth))
+        # print('   In Classify Images Model Label: {} and Truth: {}'.format(model_label_list, truth))
         
         # TODO: 3c. REPLACE pass BELOW with CODE that uses the extend list function
         #           to add the classifier label (model_label) and the value of
@@ -98,13 +101,19 @@ def classify_images(images_dir, results_dic, model):
         # If the pet image label is found within the classifier label list of terms 
         # as an exact match to one of the terms in the list - then they are added to 
         # results_dic as an exact match(1) using extend list function
-        print('Results doc key value: ', results_dic[key])
-        if truth in model_label: # error here
-            results_dic[key].extend(model_label, 1)
+        # print('Results dic key value: ', results_dic[key])
+        new_list_added = []
+        
+        if truth[0] in model_label_list[0]: 
+            new_list_added.append(model_label_list[0])
+            new_list_added.append(1)
+            results_dic[key].extend(new_list_added)
         # if not found then added to results dictionary as NOT a match(0) using
         # the extend function 
         else:
-            results_dic[key].extend(model_label, 0)
+            new_list_added.append(model_label_list[0])
+            new_list_added.append(0)
+            results_dic[key].extend(new_list_added)
             
             
         
