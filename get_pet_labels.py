@@ -4,7 +4,7 @@
 #                                                                             
 # PROGRAMMER: Nalini Sharma
 # DATE CREATED: 7/30/2019                             
-# REVISED DATE: 8/1/2019
+# REVISED DATE: 8/5/2019
 # PURPOSE: Create the function get_pet_labels that creates the pet labels from 
 #          the image's filename. This function inputs: 
 #           - The Image Folder as image_dir within get_pet_labels function and 
@@ -18,6 +18,7 @@
 ##
 # Imports python modules
 from os import listdir
+import os
 
 # TODO 2: Define get_pet_labels function below please be certain to replace None
 #       in the return statement with results_dic dictionary that you create 
@@ -46,6 +47,11 @@ def get_pet_labels(image_dir):
         
     results_dic = dict()
     
+    # Added for testing names that did not work in review No 1 
+    # files_list.append('Poodle.jpg')
+    # files_list.append('20190804_Poodle.jpg')
+    
+    # print('Complete Files list 7::', files_list)
     # loop through files list
     for id in range(0, len(files_list), 1):
     
@@ -55,18 +61,40 @@ def get_pet_labels(image_dir):
         # skip file if it starts with "."
         if files_list[id][0] != ".":
             pet_label = ""
-            # get the file name, get lowercase, split by underscore
-            pet_image_name_list = files_list[id].lower().split('_')
-            # print('pet image name:', pet_image_name_list)
             
-            # loop through each word and create another word separated by spaces
-            for word in pet_image_name_list:
-                # check for alphabetical and create a word with each word separated by spaces
-                if word.isalpha():
-                    pet_label += word + " "
+            # remove extension
+            fileNameSplit =  os.path.splitext(files_list[id])
+            # Get only the filename
+            onlyFileName = fileNameSplit[0].lower()
+            
+            # print("Onlyfilename 7: ", onlyFileName)
+            # if lengen of the filename is a single character only
+            
+            # if the filename has an underscore, separate the words, otherwise get the single name. Added as part of first review
+            if "_" in onlyFileName:
+                # get the file name, get lowercase, split by underscore
+                pet_image_name_list = onlyFileName.lower().split('_')
+            else:
+                # remove any existing items in the list
+                pet_image_name_list.clear()
+                # add single name to list
+                pet_image_name_list.append(onlyFileName)
+            
+            # print("length of pet list*********7:", pet_image_name_list," Length*************::",   len(pet_image_name_list) )
+            # if there is only one word and is not a number, get the one word (suggested by project review)
+            if (len(pet_image_name_list) == 1) and (pet_image_name_list[0].isalpha()):
+                pet_label = pet_image_name_list[0]
+            else:
+                # loop through each word and create another word separated by spaces
+                for word in pet_image_name_list:
+                    # check for alphabetical and create a word with each word separated by spaces
+                    if word.isalpha():
+                        pet_label += word + " "
+            
             # remove leading and training spaces
             pet_label = pet_label.strip()
-            
+            # testing after review
+            # print("Tetsing in get_pet_labels.py 8::*******************", pet_label)
             # add key (filename) and value ( the space separated name) in a dictionary
             if files_list[id] not in results_dic:
                 results_dic[files_list[id]] = [pet_label]
